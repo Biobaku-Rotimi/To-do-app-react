@@ -1,7 +1,9 @@
-name: Deploy React App to GitHub Pages
+name: React CI/CD Pipeline
 
 on:
   push:
+    branches: [master]
+  pull_request:
     branches: [master]
   workflow_dispatch:
 
@@ -38,11 +40,13 @@ jobs:
         run: npm run build
 
       - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
   deploy:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     needs: build
 
