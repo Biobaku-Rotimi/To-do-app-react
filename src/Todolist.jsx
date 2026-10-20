@@ -43,7 +43,7 @@ function Todolist(){
 
     return(
         <div>
-            <h1>To Do Tasks</h1>
+            <h1 style={{color: 'red'}}>To Do Tasks</h1>
             <div>
                 <input type="text" value={newtask} placeholder='enter a tasks..' onChange={changetask} />
                 <button className='add-btn' onClick={addtask} >add task</button>
